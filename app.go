@@ -14,8 +14,8 @@ type App struct {
 	ctx context.Context
 }
 
-appSettings, _ := settings.Read(path)
-windowPosX, windowPosY := , appSettings.WindowPosition.Y
+var path = "drawers-settings.toml"
+var appSettings, _ = settings.Read(path)
 
 // NewApp creates a new App application struct
 func NewApp() *App {
@@ -27,10 +27,21 @@ func NewApp() *App {
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 
-	runtime.WindowSetPosition(ctx, appSettings.WindowPosition.X, )
+	runtime.WindowSetPosition(
+		ctx,
+		appSettings.WindowPosition.X,
+		appSettings.WindowPosition.Y,
+	)
 }
 
 // Greet returns a greeting for the given name
 func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
+}
+
+// Save window position
+func (a *App) SaveWindowPosition(x int, y int) {
+	appSettings.WindowPosition.X = x
+	appSettings.WindowPosition.Y = y
+	settings.Update(path, appSettings)
 }

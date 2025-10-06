@@ -5,7 +5,7 @@ function App() {
   return (
     <main className='h-screen w-full overflow-hidden text-slate-100 relative'>
       <div className='h-10 w-full sticky top-0 z-10 bg-gray-700/60'>
-        <div className='drag-zone cursor-move flex items-center justify-between px-0.5 z-0 font-serif'>
+        <div className='drag-zone cursor-move flex items-center justify-between px-0.5 z-0 font-serif' id="drag-zone">
           <h1 className='text-2xl font-bold mb-2 pt-0.5 pl-1'>goDrawer</h1>
           <Button className='bg-orange-500 hover:bg-orange-300'>
             Settings
