@@ -1,21 +1,37 @@
 package main
 
 import (
-	"log"
+	"embed"
 
-	"github.com/deadlyedge/goDrawer/internal/settings"
-	"github.com/deadlyedge/goDrawer/internal/ui"
+	"github.com/wailsapp/wails/v2"
+	"github.com/wailsapp/wails/v2/pkg/options"
+	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 )
 
-func main() {
-	// Read and print settings first
-	appSettings, err := settings.Read("drawers-settings.toml")
-	if err != nil {
-		log.Printf("failed to read settings: %v", err)
-	} else {
-		settings.Print(appSettings)
-	}
+//go:embed all:frontend/dist
+var assets embed.FS
 
-	// Run the UI window
-	ui.RunWindow()
+func main() {
+	// Create an instance of the app structure
+	app := NewApp()
+
+	// Create application with options
+	err := wails.Run(&options.App{
+		Title:  "goDrawer",
+		Width:  400,
+		Height: 600,
+		AssetServer: &assetserver.Options{
+			Assets: assets,
+		},
+		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
+		OnStartup:        app.startup,
+		Bind: []interface{}{
+			app,
+		},
+		Frameless: true,
+	})
+
+	if err != nil {
+		println("Error:", err.Error())
+	}
 }
