@@ -2,27 +2,17 @@ package main
 
 import (
 	"embed"
-	"fmt"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
-	
-	"github.com/deadlyedge/goDrawer/internal/settings"
 )
 
 //go:embed all:frontend/dist
 var assets embed.FS
 
-
 func main() {
-	settingsPath:="drawers-settings.toml"
-	// Load settings
-	appSettings, _ := settings.Read(settingsPath)
-
-	fmt.Println(appSettings)
-
 	// Create an instance of the app structure
 	app := NewApp()
 
@@ -38,6 +28,7 @@ func main() {
 		},
 		BackgroundColour: &options.RGBA{R: 0, G: 0, B: 0, A: 100},
 		OnStartup:        app.startup,
+		OnBeforeClose:    app.BeforeClose,
 		Bind: []interface{}{
 			app,
 		},

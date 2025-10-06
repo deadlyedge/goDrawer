@@ -1,50 +1,43 @@
-[[drawers]]
-name = "Netch"
-path = "D:\\users\\Desktop\\Netch"
-
-  [drawers.size]
-  width = 403
-  height = 324
+start_with_windows = false
+default_icon_folder_path = ""
+default_icon_file_theme = ""
+default_icon_unknown_theme = ""
 
 [[drawers]]
-name = "mkvtoolnix"
-path = "D:\\users\\Desktop\\mkvtoolnix"
-
+  name = "Netch"
+  path = "D:\\users\\Desktop\\Netch"
   [drawers.size]
-  width = 477
-  height = 460
+    width = 403
+    height = 324
 
 [[drawers]]
-name = "DaVinci Resolve"
-path = "C:\\Users\\xdrea\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Blackmagic Design\\DaVinci Resolve"
-
+  name = "mkvtoolnix"
+  path = "D:\\users\\Desktop\\mkvtoolnix"
   [drawers.size]
-  width = 407
-  height = 265
+    width = 477
+    height = 460
 
 [[drawers]]
-name = "桌面文档"
-path = "D:\\users\\Documents\\桌面抽屉\\桌面文档"
-
+  name = "DaVinci Resolve"
+  path = "C:\\Users\\xdrea\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Blackmagic Design\\DaVinci Resolve"
   [drawers.size]
-  width = 327
-  height = 363
+    width = 407
+    height = 265
+
+[[drawers]]
+  name = "桌面文档"
+  path = "D:\\users\\Documents\\桌面抽屉\\桌面文档"
+  [drawers.size]
+    width = 327
+    height = 363
 
 [window_position]
-x = 184
-y = 213
-
-background_color_hsla = [33, 85, 27, 0.75]
-
-start_with_windows = false
-
-default_icon_folder_path = "asset/icons/folder_icon.png"
-default_icon_file_theme = "text-x-generic"
-default_icon_unknown_theme = "asset/icons/question_unknown.png"
+  x = 3068
+  y = 1273
 
 [thumbnail_size]
-width = 96
-height = 96
+  width = 96
+  height = 96
 
 [extension_icon_map]
-".url" = "asset/icons/browser_url.png"
+  ".url" = "asset/icons/browser_url.png"

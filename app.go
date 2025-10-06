@@ -45,3 +45,9 @@ func (a *App) SaveWindowPosition(x int, y int) {
 	appSettings.WindowPosition.Y = y
 	settings.Update(path, appSettings)
 }
+// v2: BeforeClose 钩子
+func (a *App) BeforeClose(ctx context.Context) (prevent bool) {
+    x, y := runtime.WindowGetPosition(ctx)
+		a.SaveWindowPosition(x, y)
+    return false // 允许关闭
+}
