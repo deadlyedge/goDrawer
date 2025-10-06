@@ -7,12 +7,16 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
+
+	"github.com/deadlyedge/goDrawer/internal/settings"
 )
 
 //go:embed all:frontend/dist
 var assets embed.FS
 
 func main() {
+	// Load settings
+	settings.Load("drawers-settings.toml")
 	// Create an instance of the app structure
 	app := NewApp()
 
@@ -21,6 +25,8 @@ func main() {
 		Title:  "goDrawer",
 		Width:  250,
 		Height: 400,
+		Frameless: true,
+		DisableResize: true,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
@@ -29,7 +35,6 @@ func main() {
 		Bind: []interface{}{
 			app,
 		},
-		Frameless: true,
 		Windows: &windows.Options{
 			WebviewIsTransparent:              true,            // 允许 webview 透明
 			WindowIsTranslucent:               true,            // 启用窗口半透明
