@@ -2,30 +2,36 @@ package main
 
 import (
 	"embed"
+	"fmt"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
-
+	
 	"github.com/deadlyedge/goDrawer/internal/settings"
 )
 
 //go:embed all:frontend/dist
 var assets embed.FS
 
+
 func main() {
+	settingsPath:="drawers-settings.toml"
 	// Load settings
-	settings.Load("drawers-settings.toml")
+	appSettings, _ := settings.Read(settingsPath)
+
+	fmt.Println(appSettings)
+
 	// Create an instance of the app structure
 	app := NewApp()
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:  "goDrawer",
-		Width:  250,
-		Height: 400,
-		Frameless: true,
+		Title:         "goDrawer",
+		Width:         256,
+		Height:        256,
+		Frameless:     true,
 		DisableResize: true,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
@@ -36,8 +42,8 @@ func main() {
 			app,
 		},
 		Windows: &windows.Options{
-			WebviewIsTransparent:              true,            // 允许 webview 透明
-			WindowIsTranslucent:               true,            // 启用窗口半透明
+			WebviewIsTransparent:              true,         // 允许 webview 透明
+			WindowIsTranslucent:               true,         // 启用窗口半透明
 			BackdropType:                      windows.Auto, // 可选：Auto, Acrylic, Mica
 			DisableWindowIcon:                 false,
 			DisableFramelessWindowDecorations: false,

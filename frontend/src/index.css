@@ -136,7 +136,8 @@
 }
 
 @theme {
-  --font-sans: Lobster;
+  --font-sans: system;
+  --font-serif: Lobster;
 }
 
 .drag-zone {

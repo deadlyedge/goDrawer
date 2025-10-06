@@ -3,12 +3,19 @@ package main
 import (
 	"context"
 	"fmt"
+
+	"github.com/wailsapp/wails/v2/pkg/runtime"
+
+	"github.com/deadlyedge/goDrawer/internal/settings"
 )
 
 // App struct
 type App struct {
 	ctx context.Context
 }
+
+appSettings, _ := settings.Read(path)
+windowPosX, windowPosY := , appSettings.WindowPosition.Y
 
 // NewApp creates a new App application struct
 func NewApp() *App {
@@ -19,6 +26,8 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
+
+	runtime.WindowSetPosition(ctx, appSettings.WindowPosition.X, )
 }
 
 // Greet returns a greeting for the given name
