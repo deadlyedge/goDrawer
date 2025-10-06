@@ -6,6 +6,7 @@ import (
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
+	"github.com/wailsapp/wails/v2/pkg/options/windows"
 )
 
 //go:embed all:frontend/dist
@@ -18,17 +19,24 @@ func main() {
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:  "goDrawer",
-		Width:  400,
-		Height: 600,
+		Width:  250,
+		Height: 400,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
-		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
+		BackgroundColour: &options.RGBA{R: 0, G: 0, B: 0, A: 100},
 		OnStartup:        app.startup,
 		Bind: []interface{}{
 			app,
 		},
 		Frameless: true,
+		Windows: &windows.Options{
+			WebviewIsTransparent:              true,            // 允许 webview 透明
+			WindowIsTranslucent:               true,            // 启用窗口半透明
+			BackdropType:                      windows.Auto, // 可选：Auto, Acrylic, Mica
+			DisableWindowIcon:                 false,
+			DisableFramelessWindowDecorations: false,
+		},
 	})
 
 	if err != nil {
