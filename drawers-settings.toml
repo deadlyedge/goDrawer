@@ -32,8 +32,8 @@ default_icon_unknown_theme = ""
     height = 363
 
 [window_position]
-  x = 3068
-  y = 1273
+  x = 2831
+  y = 1066
 
 [thumbnail_size]
   width = 96
