@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/wailsapp/wails/v2/pkg/runtime"
+	// "github.com/wailsapp/wails/v3/pkg/runtime"
 
 	"github.com/deadlyedge/goDrawer/internal/settings"
 )
@@ -12,6 +12,7 @@ import (
 // App struct
 type App struct {
 	ctx context.Context
+	app any // Wails v3 app instance
 }
 
 var path = "drawers-settings.toml"
@@ -24,14 +25,12 @@ func NewApp() *App {
 
 // startup is called when the app starts. The context is saved
 // so we can call the runtime methods
-func (a *App) startup(ctx context.Context) {
+func (a *App) startup(ctx context.Context, app any) {
 	a.ctx = ctx
+	a.app = app
 
-	runtime.WindowSetPosition(
-		ctx,
-		appSettings.WindowPosition.X,
-		appSettings.WindowPosition.Y,
-	)
+	// Restore window position in v3 (TODO: Implement v3 compatible window positioning)
+	// runtime.WindowSetPosition(ctx, appSettings.WindowPosition.X, appSettings.WindowPosition.Y)
 }
 
 // Greet returns a greeting for the given name
@@ -45,9 +44,17 @@ func (a *App) SaveWindowPosition(x int, y int) {
 	appSettings.WindowPosition.Y = y
 	settings.Update(path, appSettings)
 }
-// v2: BeforeClose 钩子
-func (a *App) BeforeClose(ctx context.Context) (prevent bool) {
-    x, y := runtime.WindowGetPosition(ctx)
-		a.SaveWindowPosition(x, y)
-    return false // 允许关闭
+
+// Open settings window
+func (a *App) OpenSettingsWindow() {
+	// For now, just show a console message
+	// We'll implement the actual window creation once we figure out the correct API
+	fmt.Println("Settings button clicked - window creation logic to be implemented")
 }
+
+// v2: BeforeClose 钩子
+// func (a *App) BeforeClose(ctx context.Context) (prevent bool) {
+//     x, y := runtime.WindowGetPosition(ctx)
+// 		a.SaveWindowPosition(x, y)
+//     return false // 允许关闭
+// }

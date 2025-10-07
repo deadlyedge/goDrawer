@@ -6,6 +6,10 @@ export function Greet(arg1) {
   return window['go']['main']['App']['Greet'](arg1);
 }
 
+export function OpenSettingsWindow() {
+  return window['go']['main']['App']['OpenSettingsWindow']();
+}
+
 export function SaveWindowPosition(arg1, arg2) {
   return window['go']['main']['App']['SaveWindowPosition'](arg1, arg2);
 }

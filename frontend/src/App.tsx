@@ -1,7 +1,11 @@
 import { Button } from "./components/ui/button"
 import { ScrollArea } from "./components/ui/scroll-area"
+import { OpenSettingsWindow } from "../wailsjs/go/main/App"
 
 function App() {
+  const handleSettingsClick = () => {
+    OpenSettingsWindow()
+  }
   return (
     <main className='h-screen w-full overflow-hidden text-slate-100 relative'>
       <div className='h-10 w-full sticky top-0 z-10 bg-gray-700/60'>
@@ -11,7 +15,7 @@ function App() {
           <h1 className='text-2xl font-bold mb-2 pt-0.5 pl-1 select-none'>
             goDrawer
           </h1>
-          <Button className='bg-orange-500 hover:bg-orange-300'>
+          <Button className='bg-orange-500 hover:bg-orange-300' onClick={handleSettingsClick}>
             Settings
           </Button>
         </div>

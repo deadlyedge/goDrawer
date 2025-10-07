@@ -3,4 +3,6 @@
 
 export function Greet(arg1:string):Promise<string>;
 
+export function OpenSettingsWindow():Promise<void>;
+
 export function SaveWindowPosition(arg1:number,arg2:number):Promise<void>;
